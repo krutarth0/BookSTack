@@ -14,26 +14,37 @@ class BookList extends Component {
     }
     displayBooks(){
         var data = this.props.data;
-        if(data.loading){
-            return( <div>Loading books...</div> );
+        //data = ...new Set(data)
+         if(data.loading){
+             return( <div>Loading books...</div> );
         } else {
             return data.books.map(book => {
-                return(
+                 return(
                     <li key={ book.id } onClick={ (e) => this.setState({ selected: book.id }) }>{ book.name }</li>
                 );
-            })
-        }
+             })
+         }
     }
     render(){
         return(
             <div>
                 <ul id="book-list" className="site-font">
                     { this.displayBooks() }
+                    <BookDetails bookId={this.state.selected}/>
                 </ul>
-                <BookDetails bookId={ this.state.selected } />
+
             </div>
         );
     }
 }
 
-export default graphql(getBooksQuery)(BookList);
+export default graphql(getBooksQuery,{
+  options: (props)=>{
+    return{
+        variables:{
+          search:props.search,
+          howmany: 40
+        }
+    }
+  }
+})(BookList);
