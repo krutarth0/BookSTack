@@ -15,15 +15,22 @@ class BookList extends Component {
     displayBooks(){
         var data = this.props.data;
         //data = ...new Set(data)
-         if(data.loading){
-             return( <div>Loading books...</div> );
-        } else {
-            return data.books.map(book => {
-                 return(
-                    <li key={ book.id } onClick={ (e) => this.setState({ selected: book.id }) }>{ book.name }</li>
-                );
-             })
-         }
+        try{
+                if(data.loading){
+                    return( <div>Loading books...</div> );
+               } else {
+                   return data.books.map(book => {
+                        return(
+                           <li key={ book.id } onClick={ (e) => this.setState({ selected: book.id }) }>{ book.name }</li>
+                       );
+                    })
+                }
+
+        }
+        catch{
+          console.log("oops")
+        }
+
     }
     render(){
         return(

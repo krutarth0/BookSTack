@@ -16,6 +16,7 @@ export const getBooksQuery = gql`
           name
           genre
           author
+          description
         }
       }
 
@@ -37,6 +38,7 @@ export const getBookQuery = gql`
           name
           genre
           author
+          description
         }
       }
 
