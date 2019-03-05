@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
+//layout
+import Navigation from "./layout/Navigation";
 // components
 import BookList from './components/BookList';
 import SignUp from './auth/signup';
@@ -34,6 +36,7 @@ class App extends Component {
         <ApolloProvider client={client}>
             <div id="main">
             <SignUp />
+            <Navigation />
                 <h1 className="logo-font">Book STack </h1>
                 <div style={{textAlign:"center"}}>
                 <input type ="text" onChange={this.handleChange} />
