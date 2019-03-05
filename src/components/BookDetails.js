@@ -6,7 +6,6 @@ class BookDetails extends Component {
 
     constructor(props){
       super(props)
-
     }
     displayBookDetails(){
         var book = this.props.data.book;

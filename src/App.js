@@ -3,8 +3,8 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 // components
- import BookList from './components/BookList';
-// import AddBook from './components/AddBook';
+import BookList from './components/BookList';
+import SignUp from './auth/signup';
 
 // apollo client setup
 const client = new ApolloClient({
@@ -33,14 +33,15 @@ class App extends Component {
     return (
         <ApolloProvider client={client}>
             <div id="main">
+            <SignUp />
                 <h1 className="logo-font">Book STack </h1>
                 <div style={{textAlign:"center"}}>
                 <input type ="text" onChange={this.handleChange} />
                 <input type ="button" value="Search" onClick={this.handleClick} />
-
                 </div>
                 {console.log(this.state.search)}
                 <BookList search={this.state.search}/>
+
             </div>
         </ApolloProvider>
     );
