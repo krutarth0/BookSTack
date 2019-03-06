@@ -4,10 +4,10 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 var config = {
  apiKey: "AIzaSyBdD-dZnTara6z3jjKOENeqWQJz8Lk53jQ",
  authDomain: "fir-auth-b1ee0.firebaseapp.com",
- databaseURL: "https://fir-auth-b1ee0.firebaseio.com",
- projectId: "fir-auth-b1ee0",
- storageBucket: "fir-auth-b1ee0.appspot.com",
- messagingSenderId: "519353952250"
+ // databaseURL: "https://fir-auth-b1ee0.firebaseio.com",
+ // projectId: "fir-auth-b1ee0",
+ // storageBucket: "fir-auth-b1ee0.appspot.com",
+ // messagingSenderId: "519353952250"
 };
 firebase.initializeApp(config);
 

@@ -14,22 +14,15 @@ class BookList extends Component {
     }
     displayBooks(){
         var data = this.props.data;
-        //data = ...new Set(data)
         try{
-                if(data.loading){
-                    return( <div>Loading books...</div> );
-               } else {
+            if(data.loading){return( <div>Loading books...</div> );}
+              else {
                    return data.books.map(book => {
-                        return(
-                           <li key={ book.id } onClick={ (e) => this.setState({ selected: book.id }) }>{ book.name }</li>
-                       );
+                        return(<li key={ book.id } onClick={ (e) => this.setState({ selected: book.id }) }>{ book.name }</li>);
                     })
                 }
-
-        }
-        catch{
-          console.log("oops")
-        }
+            }
+        catch(err){console.log(err);}
 
     }
     render(){
@@ -50,7 +43,7 @@ export default graphql(getBooksQuery,{
     return{
         variables:{
           search:props.search,
-          howmany: 40
+          howmany: 25
         }
     }
   }

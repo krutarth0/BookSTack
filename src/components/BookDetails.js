@@ -4,43 +4,31 @@ import { getBookQuery } from '../queries/queries';
 
 class BookDetails extends Component {
 
-    constructor(props){
-      super(props)
-    }
     displayBookDetails(){
         var book = this.props.data.book;
-        try {
-          console.log(book)
-          if(this.props.bookId !== null ){
+
+
+          try{
+          if(this.props.bookId ){
             return(
                 <div className="site-font">
-
                     <h2>{ book.name }</h2>
+
                     <h4>genre : </h4>
-                    {book.genre.map(item => {
-                      return <p>{ item }</p>
-                    })}
+                      {book.genre!==null ?book.genre.map(item =>{return <p key="item1">{ item }</p>}):<p key="item1">no genre found</p>}
 
                     <h4>author : </h4>
-                    {book.author.map(item => {
-                      return <p>{ item }</p>
-                    })}
+                    {book.author!==null ? book.author.map(item => {return <p key="item2">{ item }</p>}) : <p key="item2">no detail about author</p>}
 
-                    <p>{book.description}</p>
+                    <h4>description</h4>
+                    {book.description!==null ? <p key="item3">{book.description}</p> :<p key="item3"> no description</p> }
                 </div>
-            );
+            )
           }
-          else{
-            return (<h1>SO Sorry about that, we're still devloping...</h1>)
-          }
-        } catch (e) {
-          console.log("soryy")
-            return (<h1 id="err">no data found..</h1>)
-        }
-
-
-
-
+      }
+      catch (err){
+        console.log(err);
+      }
     }
     render(){
         return(
