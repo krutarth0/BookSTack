@@ -1,5 +1,8 @@
 import React from 'react';
 import Logo from '../components/logo/logo.js'
+import { Link } from 'react-router-dom'
+
+
 class Navigation extends React.Component {
   render() {
     return (
@@ -13,10 +16,10 @@ class Navigation extends React.Component {
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
-                <a href="index.html" className="nav-link">Home</a>
+                <Link to='/'><a href="index.html" className="nav-link">Home</a></Link>
               </li>
               <li className="nav-item">
-                <a href="about.html" className="nav-link">About Us</a>
+                <Link to='/login'><a href="about.html" className="nav-link" style={{textDecorations:"none"}}>Login</a></Link>
               </li>
               <li className="nav-item">
                 <a href="services.html" className="nav-link">Services</a>

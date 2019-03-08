@@ -12,7 +12,7 @@ var config = {
 firebase.initializeApp(config);
 
 
-class SignUp extends React.Component{
+class Login extends React.Component{
 
 state = {
   isSignedIn: false
@@ -37,7 +37,8 @@ state = {
 
     render(){
       return(
-        <div>
+        <div style={{align:"center"}}>
+
               {this.state.isSignedIn ? (
                 <span>
                   <div>Signed In!</div>
@@ -61,4 +62,4 @@ state = {
 }
 
 
-export default SignUp;
+export default Login;
