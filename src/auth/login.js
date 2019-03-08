@@ -1,4 +1,9 @@
 import React from "react"
+
+import Navigation from "../layout/Navigation";
+
+
+
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 var config = {
@@ -37,7 +42,8 @@ state = {
 
     render(){
       return(
-        <div style={{align:"center"}}>
+        <div style={{margin:"auto"}}>
+                <Navigation/>
 
               {this.state.isSignedIn ? (
                 <span>
@@ -45,7 +51,7 @@ state = {
                   <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
                   <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
                   <img
-                    alt="profile picture"
+                    alt="profile pic"
                     src={firebase.auth().currentUser.photoURL}
                   />
                 </span>

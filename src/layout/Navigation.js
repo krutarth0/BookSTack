@@ -22,7 +22,7 @@ class Navigation extends React.Component {
                 <Link to='/login'><a href="about.html" className="nav-link" style={{textDecorations:"none"}}>Login</a></Link>
               </li>
               <li className="nav-item">
-                <a href="services.html" className="nav-link">Services</a>
+                <Link exact to='/skeleton'><a href="services.html" className="nav-link">skeleton</a></Link>
               </li>
               <li className="nav-item">
                 <a href="blog.html" className="nav-link">Blog</a>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import Navigation from "../layout/Navigation";
+
 import BookList from '../components/BookList';
+import Navigation from "../layout/Navigation";
 
 class Home extends Component {
   constructor(props){
@@ -24,7 +25,7 @@ class Home extends Component {
   render() {
     return (
             <div id="main">
-            <Navigation />
+                <Navigation/>
                 <h1 className="logo-font">Book STack </h1>
                 <div style={{textAlign:"center"}}>
                 <input type ="text" onChange={this.handleChange} />
