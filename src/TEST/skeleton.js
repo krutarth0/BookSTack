@@ -51,7 +51,7 @@ class Skeleton extends Component {
               <p style={{fontSize:"18px"}}>(and will ask user if this is the book he/she talking about then we'll follow further)</p>
               <p style={{fontSize:"18px"}}>(or if we didn't able to fetch the currect book we ask user to add title, author name ,genre and stuff)</p><br/>
               </li>
-               <h4>Author </h4> <p  style={{fontSize:"18px"}}>(then i'll fetch details about  author of the book from goodread)</p>
+               <h4>Author </h4> <p  style={{fontSize:"18px"}}>(then i'll fetch the details about the author of the book, from goodread)</p>
                <h4>grenre:</h4> <p style={{fontSize:"18px"}}>(then i'll add all the genre about the books that a user added to a list and save it to the user databse to display the taste of the user)</p>
               </div>)}
             </ul>
@@ -66,6 +66,12 @@ class Skeleton extends Component {
             <button onClick={()=>this.setState({recent:true})}>Post</button>
           </div>
 
+              <div style={{marginLeft:"18px",marginTop:"30px"}}>
+              <h2 >and more !! like what made him read that book? </h2>
+              <h2>or 5 senctance about that book or rate that book </h2>
+              <p>add the ideas you got </p>
+              <h5>and make a beautiful front end, i feel exhausted on that </h5>
+              </div>  
         </div>
 
     );
