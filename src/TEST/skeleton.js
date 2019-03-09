@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled, { css } from 'styled-components'
 
 import Navigation from "../layout/Navigation";
 
@@ -24,7 +25,22 @@ class Skeleton extends Component {
     })
   }
 
+
+
   render() {
+    
+    const Button = styled.button `
+        display: inline-block;
+        border-radius: 3px;
+        width: 11rem;
+        background: transparent;
+        color: tomato;
+        border: 2px solid tomato;
+        ${props=>props.primary && css`
+              background:tomato;
+              color:white;`}
+    `;
+
     return (
         <div>
         <Navigation/>
@@ -32,7 +48,7 @@ class Skeleton extends Component {
         <div style={{position:"relative",marginTop:"20px",marginLeft:"20px"}}>
         <input type="text"  onChange={(e)=>this.setState({user_name:e.target.value})}/> Enter your name <br/>
         <input type="text"  style={{marginTop:"20px"}} onChange={(e)=>this.setState({value:e.target.value})}/> enter the name of the book/books that've infuenced you
-        <button onClick={this.addItem} >Add Book</button>
+        <Button primary style={{marginLeft:"5px"}} onClick={this.addItem} >Add Book</Button>
       </div>
 
         <div id="book-details" style={{top:"56px"}}>
@@ -63,7 +79,7 @@ class Skeleton extends Component {
 
           <div style={{position:"relative",marginTop:"20px",marginLeft:"20px"}} >
           <input type="text"  onChange={(e)=>this.setState({recent_book:e.target.value})}/> post the recent book that you've been reading or read <br/>
-            <button onClick={()=>this.setState({recent:true})}>Post</button>
+            <Button primary  style={{marginTop:"5px"}} onClick={()=>this.setState({recent:true})}>Post</Button>
           </div>
 
               <div style={{marginLeft:"18px",marginTop:"30px"}}>
@@ -71,7 +87,7 @@ class Skeleton extends Component {
               <h2>or 5 senctance about that book or rate that book </h2>
               <p>add the ideas you got </p>
               <h5>and make a beautiful front end, i feel exhausted on that </h5>
-              </div>  
+              </div>
         </div>
 
     );
