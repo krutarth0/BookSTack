@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
+import { graphql, compose } from 'react-apollo';
+import { } from '../queries/queries';
+
+
 
 import Navigation from "../layout/Navigation";
 
@@ -28,7 +32,7 @@ class Skeleton extends Component {
 
 
   render() {
-    
+
     const Button = styled.button `
         display: inline-block;
         border-radius: 3px;
