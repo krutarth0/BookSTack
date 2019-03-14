@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 //styles
 import 'antd/dist/antd.css';
 import {
-  Form, Icon, Input, Button, Checkbox,
+  Form, Icon, Input, Button, Checkbox,Tooltip
 } from 'antd';
 
 
@@ -37,7 +37,7 @@ handleSubmitLogin = (e) => {
             firebase.auth().signInWithEmailAndPassword(values.userName, values.password)
             .then(user=>{let data=user.user
                this.setState({isSignedIn:true,
-                              LoginerrorMessage:" ",
+                              LoginerrorMessage:" "
                               })
              return this.props.setStates(data) })
             .catch(error=> {
@@ -59,11 +59,21 @@ handleSubmitSignup = (e) => {
   e.preventDefault();
   this.props.form.validateFieldsAndScroll((err, values) => {
     if (!err) {
-      console.log(values.email + values.password);
-    firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
-    .then(user=>{console.log(user.user)
-          this.setState({SignuperrorMessage:" ",
-                        modal:"login"})}  )
+
+    var promise= new Promise((resolve,reject)=>resolve(firebase.auth().createUserWithEmailAndPassword(values.email, values.password)))
+    promise.then(user=>{
+          user.user.updateProfile({
+            displayName: values.nickname,
+              photoURL: "https://cdn.dribbble.com/users/199982/screenshots/4044699/furkan-avatar-dribbble.png"
+          }).then(function() {
+            // Update successful.
+          }).catch(function(error) {
+            // An error happened.
+          });
+          this.setState({
+                        SignuperrorMessage:" ",
+                        modal:"login",
+                      })}  )
     .catch(error=> {
       // Handle Errors here.
       var errorCode = error.code;
@@ -73,6 +83,8 @@ handleSubmitSignup = (e) => {
       });
 
     });
+
+
 
     }
   });
@@ -230,6 +242,22 @@ displayLogin = ()=>{
                                     <Input type="password" onBlur={this.handleConfirmBlur} />
                                   )}
                                 </Form.Item>
+                                <Form.Item
+                                  label={(
+                                    <span>
+                                      Displayname&nbsp;
+                                      <Tooltip title="What do you want others to call you?">
+                                        <Icon type="question-circle-o" />
+                                      </Tooltip>
+                                    </span>
+                                  )}
+                                >
+                                  {getFieldDecorator('nickname', {
+                                    rules: [{ required: true, message: 'Please input your Displayname!', whitespace: true }],
+                                  })(
+                                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+                                  )}
+                                </Form.Item>
                                 <Form.Item {...tailFormItemLayout}>
                                   {getFieldDecorator('agreement', {
                                     valuePropName: 'checked',
@@ -241,9 +269,10 @@ displayLogin = ()=>{
                                 <Form.Item {...tailFormItemLayout}>
                                  <Button type="primary" htmlType="submit"  style={{width: "100%"  }} >
                                  Register</Button>
+                                 Already have an accout? <a  onClick={this.displayLogin}>sign in  now!</a>
                                </Form.Item>
-                                  Already have an accout? <a  onClick={this.displayLogin}>sign in  now!</a>
-                                  { this.state.SignuperrorMessage } || account has been created successfully
+
+                                  { this.state.SignuperrorMessage }
                                 </Form>
         </div>
         </React.Fragment>

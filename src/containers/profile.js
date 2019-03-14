@@ -1,5 +1,5 @@
 import React from 'react';
-
+import firebase from "firebase"
 
 class Profile extends React.Component {
 
@@ -8,10 +8,15 @@ class Profile extends React.Component {
 
 
   render() {
-    console.log(this.props);
 
+    var user = firebase.auth().currentUser;
+    console.log(user)
     return (
-        <h1> {this.props.UserEmail}</h1>
+      <div>
+      <h1> {user.displayName}</h1>
+        <h4> {user.email}</h4>
+        <img src={user.photoURL}/>
+        </div>
 
     )
   }
