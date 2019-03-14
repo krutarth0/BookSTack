@@ -41,7 +41,7 @@ setLoginStates =(data,login)=>{
      UserPhoneNumber:data.phoneNumber,
      UserPhotoUrl:data.photoURL
    });
-   console.log(this.state);
+   
  }
 
 logout =()=>this.setState({
