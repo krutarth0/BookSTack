@@ -1,71 +1,267 @@
 import React from "react"
-
-import Navigation from "../layout/Navigation";
-
-
-
 import firebase from "firebase"
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import { Link } from 'react-router-dom'
+
+//styles
+import 'antd/dist/antd.css';
+import {
+  Form, Icon, Input, Button, Checkbox,
+} from 'antd';
+
+
+//auth
 var config = {
  apiKey: "AIzaSyBdD-dZnTara6z3jjKOENeqWQJz8Lk53jQ",
  authDomain: "fir-auth-b1ee0.firebaseapp.com",
- // databaseURL: "https://fir-auth-b1ee0.firebaseio.com",
- // projectId: "fir-auth-b1ee0",
- // storageBucket: "fir-auth-b1ee0.appspot.com",
- // messagingSenderId: "519353952250"
 };
 firebase.initializeApp(config);
 
-
-class Login extends React.Component{
+class FLogin extends React.Component{
 
 state = {
-  isSignedIn: false
+  isSignedIn: false,
+  modal:"login",
+  confirmDirty: false,
+  autoCompleteResult: [],
+  dismiss:"none",
+  LoginerrorMessage:" ",
+  SignuperrorMessage:" "
 }
-    uiConfig = {
-          signInFlow: "popup",
-          signInOptions: [
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            firebase.auth.EmailAuthProvider.PROVIDER_ID
-          ],
-          callbacks: {
-            signInSuccess: () => false
-          }
-        }
 
-    componentDidMount = () => {
-          firebase.auth().onAuthStateChanged(user => {
-            this.setState({ isSignedIn: !!user })
-            console.log("user", user)
-          })
-        }
+
+handleSubmitLogin = (e) => {
+  e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+          if (!err) {
+
+            firebase.auth().signInWithEmailAndPassword(values.userName, values.password)
+            .then(user=>{let data=user.user
+               this.setState({isSignedIn:true,
+                              LoginerrorMessage:" ",
+                              })
+             return this.props.setStates(data) })
+            .catch(error=> {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              console.log(errorMessage);
+              this.setState({
+                LoginerrorMessage:"Sorryy! gievn email or password didnt match ,try forgot password if you need help resetting"
+              });
+
+            });
+          }
+        });
+
+
+      }
+handleSubmitSignup = (e) => {
+  e.preventDefault();
+  this.props.form.validateFieldsAndScroll((err, values) => {
+    if (!err) {
+      console.log(values.email + values.password);
+    firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
+    .then(user=>{console.log(user.user)
+          this.setState({SignuperrorMessage:" ",
+                        modal:"login"})}  )
+    .catch(error=> {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      this.setState({
+        SignuperrorMessage:errorMessage
+      });
+
+    });
+
+    }
+  });
+}
+
+compareToFirstPassword = (rule, value, callback) => {
+  const form = this.props.form;
+  if (value && value !== form.getFieldValue('password')) {
+    callback('Two passwords that you enter is inconsistent!');
+  } else {
+    callback();
+  }
+}
+
+validateToNextPassword = (rule, value, callback) => {
+  const form = this.props.form;
+  if (value && this.state.confirmDirty) {
+    form.validateFields(['confirm'], { force: true });
+  }
+  callback();
+}
+
+displaySignup = ()=>{
+  return this.setState({modal:"signup"})
+}
+displayLogin = ()=>{
+  return this.setState({modal:"login"})
+}
+
+
 
     render(){
-      return(
-        <div style={{margin:"auto"}}>
-                <Navigation/>
 
-              {this.state.isSignedIn ? (
-                <span>
-                  <div>Signed In!</div>
-                  <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
-                  <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-                  <img
-                    alt="profile pic"
-                    src={firebase.auth().currentUser.photoURL}
-                  />
-                </span>
-              ) : (
-                <StyledFirebaseAuth
-                  uiConfig={this.uiConfig}
-                  firebaseAuth={firebase.auth()}
-                />
-              )}
-            </div>
+       const { getFieldDecorator } = this.props.form;
+        const { autoCompleteResult } = this.state;
+
+        const formItemLayout = {
+          labelCol: {
+            xs: { span: 24 },
+            sm: { span: 8 },
+          },
+          wrapperCol: {
+            xs: { span: 24 },
+            sm: { span: 16 },
+          },
+        };
+        const tailFormItemLayout = {
+          wrapperCol: {
+            xs: {
+              span: 24,
+              offset: 0,
+            },
+            sm: {
+              span: 16,
+              offset: 8,
+            },
+          },
+        };
+
+      return(
+        <React.Fragment>
+        <h1>{this.state.isSignedIn}</h1>
+        {
+          this.state.modal==="login" ?
+        <React.Fragment>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle" style={{margin:"auto"}}>Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                            <Form onSubmit={this.handleSubmitLogin} style={{ maxWidth: "300px",margin:"auto"}}>
+                                 <Form.Item>
+                                   {getFieldDecorator('userName', {
+                                     rules: [{
+                                       type: 'email', message: 'The input is not valid E-mail!',
+                                     }, {
+                                       required: true, message: 'Please input your E-mail!',
+                                     }],
+                                   })(
+                                     <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}  placeholder="email"/>
+                                   )}
+                                 </Form.Item>
+                                 <Form.Item>
+                                   {getFieldDecorator('password', {
+                                     rules: [{ required: true, message: 'Please input your Password!' }],
+                                   })(
+                                     <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                                   )}
+                                 </Form.Item>
+                                 <Form.Item>
+                                   {getFieldDecorator('remember', {
+                                     valuePropName: 'checked',
+                                     initialValue: true,
+                                   })(
+                                     <Checkbox>Remember me</Checkbox>
+                                   )}
+                                   <a atyle={{float: "right"}} href="">Forgot password</a>
+                                <Button type="primary" htmlType="submit" style={{ width: "100%"  }} data-dismiss={this.state.dismiss}  >
+                                        Log in
+                                   </Button>
+                                   Or <a  onClick={this.displaySignup}>register now!</a>
+                                 </Form.Item>
+                                 {this.state.LoginerrorMessage}
+                          </Form>
+        </div>
+        </React.Fragment>
+        :
+        <React.Fragment>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle" style={{margin:"auto"}}>Signup</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                             <Form {...formItemLayout} onSubmit={this.handleSubmitSignup}  style={{ maxWidth: "400px",margin:"auto"}}>
+                                <Form.Item
+                                  label="E-mail"
+                                >
+                                  {getFieldDecorator('email', {
+                                    rules: [{
+                                      type: 'email', message: 'The input is not valid E-mail!',
+                                    }, {
+                                      required: true, message: 'Please input your E-mail!',
+                                    }],
+                                  })(
+                                    <Input />
+                                  )}
+                                </Form.Item>
+                                <Form.Item
+                                  label="Password"
+                                >
+                                  {getFieldDecorator('password', {
+                                    rules: [{
+                                      required: true, message: 'Please input your password!',
+                                    }, {
+                                      validator: this.validateToNextPassword,
+                                    }],
+                                  })(
+                                    <Input type="password" />
+                                  )}
+                                </Form.Item>
+                                <Form.Item
+                                  label="Confirm Password"
+                                >
+                                  {getFieldDecorator('confirm', {
+                                    rules: [{
+                                      required: true, message: 'Please confirm your password!',
+                                    }, {
+                                      validator: this.compareToFirstPassword,
+                                    }],
+                                  })(
+                                    <Input type="password" onBlur={this.handleConfirmBlur} />
+                                  )}
+                                </Form.Item>
+                                <Form.Item {...tailFormItemLayout}>
+                                  {getFieldDecorator('agreement', {
+                                    valuePropName: 'checked',
+                                  })(
+                                    <Checkbox>I have read the <a href="">agreement</a></Checkbox>
+                                  )}
+                                </Form.Item>
+
+                                <Form.Item {...tailFormItemLayout}>
+                                 <Button type="primary" htmlType="submit"  style={{width: "100%"  }} >
+                                 Register</Button>
+                               </Form.Item>
+                                  Already have an accout? <a  onClick={this.displayLogin}>sign in  now!</a>
+                                  { this.state.SignuperrorMessage } || account has been created successfully
+                                </Form>
+        </div>
+        </React.Fragment>
+      }
+        <div class="modal-footer" style={{margin:"auto"}}>
+        <button type="button" class="btn btn-primary">Google</button>
+        <button type="button" class="btn btn-primary">Facebook</button>
+        <button type="button" class="btn btn-primary">Github</button>
+        <button type="button" class="btn btn-primary">LinkedIn</button>
+        </div>
+
+      </React.Fragment>
+
     );
     }
 
 }
 
+const WrappedLoginForm = Form.create({ name: 'firebase_login' })(FLogin);
 
-export default Login;
+export default WrappedLoginForm;

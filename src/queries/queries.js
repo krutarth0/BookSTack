@@ -13,7 +13,7 @@ export const getBooksQuery = gql`
       query Books($search : String , $howmany : Int ){
         books(search : $search , howmany : $howmany){
           id
-          name
+          title
           genre
           author
           description
@@ -35,7 +35,7 @@ export const getBookQuery = gql`
       query Book($id : ID ){
         book(id:$id){
           id
-          name
+          title
           genre
           author
           description

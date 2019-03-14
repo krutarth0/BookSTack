@@ -12,7 +12,7 @@ class BookDetails extends Component {
           if(this.props.bookId ){
             return(
                 <div className="site-font">
-                    <h2>{ book.name }</h2>
+                    <h2>{ book.title }</h2>
 
                     <h4>genre : </h4>
                       {book.genre!==null ?book.genre.map(item =>{return <p key="item1">{ item }</p>}):<p key="item1">no genre found</p>}

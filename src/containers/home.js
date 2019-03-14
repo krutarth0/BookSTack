@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
 
-
 import BookList from '../components/BookList';
-import Navigation from "../layout/Navigation";
+
 
 class Home extends Component {
   constructor(props){
     super(props)
     this.state ={
       xsearch: "",
-      search:"outer space"
+      search:"outer space",
+
     }
   }
   handleChange = (event)=>{
@@ -23,6 +23,7 @@ class Home extends Component {
       search: this.state.xsearch
     })
   }
+
   render() {
     const Button = styled.button `
         display: inline-block;
@@ -37,7 +38,6 @@ class Home extends Component {
     `;
     return (
             <div id="main">
-                <Navigation/>
                 <h1 className="logo-font">Book STack </h1>
                 <div style={{textAlign:"center"}}>
                 <input type ="text" onChange={this.handleChange} />

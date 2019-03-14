@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
-import { graphql, compose } from 'react-apollo';
-import { } from '../queries/queries';
 
 
 
-import Navigation from "../layout/Navigation";
+
+
 
 class Skeleton extends Component {
 
@@ -28,9 +27,6 @@ class Skeleton extends Component {
       }
     })
   }
-
-
-
   render() {
 
     const Button = styled.button `
@@ -44,10 +40,10 @@ class Skeleton extends Component {
               background:tomato;
               color:white;`}
     `;
-
+    console.log(this.props);
     return (
         <div>
-        <Navigation/>
+
 
         <div style={{position:"relative",marginTop:"20px",marginLeft:"20px"}}>
         <input type="text"  onChange={(e)=>this.setState({user_name:e.target.value})}/> Enter your name <br/>
