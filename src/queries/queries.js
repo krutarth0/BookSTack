@@ -21,16 +21,6 @@ export const getBooksQuery = gql`
       }
 
 `;
-
-// const addBookMutation = gql`
-//     mutation AddBook($name: String!, $genre: String!, $authorId: ID!){
-//         addBook(name: $name, genre: $genre, authorId: $authorId){
-//             name
-//             id
-//         }
-//     }
-// `;
-
 export const getBookQuery = gql`
       query Book($id : ID ){
         book(id:$id){
@@ -42,4 +32,27 @@ export const getBookQuery = gql`
         }
       }
 
+`;
+
+
+export const AddPost = gql`
+    mutation  addPost(title:String, by:String, content:String, datePosted:String, suggestions:Int){
+        addPost(title: $title, by: $by, content: $content,datePosted:$datePosted,suggestions:$suggestions){
+               _id
+               title
+               by
+               datePosted
+               suggestions
+        }
+    }
+`;
+
+export const AddComment = gql`
+    mutation addComment($pid:String,$by:String,$message:String){
+        addComment(pid: pid, by: $by, message: $message){
+            pid
+            by
+            message
+        }
+    }
 `;

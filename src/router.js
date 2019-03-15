@@ -11,7 +11,6 @@ const BaseRouter =(props)=>(
   <div>
 
   <Route exact  path="/"  render={()=><Home/>}/>
-  <Route exact path="/login" render={()=><Login {...props}/>}/>
   <Route exact  path="/skeleton" render={()=><Skeleton {...props}/>}/>
   <Route exact  path="/profile"  render={()=><Profile />}/>
   </div>
