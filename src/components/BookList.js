@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { getBooksQuery } from '../queries/queries';
-
-// components
+import Cards from "./body/card"
+import "./css/cardGrid.css"
 import BookDetails from './BookDetails';
+import Grid from '@material-ui/core/Grid'
+import { withStyles } from '@material-ui/core/styles'
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
+
 
 class BookList extends Component {
     constructor(props){
@@ -17,9 +30,22 @@ class BookList extends Component {
         try{
             if(data.loading){return( <div>Loading books...</div> );}
               else {
-                   return data.books.map(book => {
-                        return(<li key={ book.id } onClick={ (e) => this.setState({ selected: book.id }) }>{ book.name }</li>);
-                    })
+                   return (
+                     <Grid container spacing={40}>
+                     {data.book.map(book => {
+                        return(
+                          <Grid item>
+                          <Cards
+                            id={book.id}
+                            title={book.title}
+                            description={book.description}
+                            ts={book.textSnippet}
+                          />
+                          </Grid>
+                        );
+                    })}
+                    </Grid>
+                  )
                 }
             }
         catch(err){console.log(err);}
@@ -28,11 +54,7 @@ class BookList extends Component {
     render(){
         return(
             <div>
-                <ul id="book-list" className="site-font">
-                    { this.displayBooks() }
-                    <BookDetails bookId={this.state.selected}/>
-                </ul>
-
+                { this.displayBooks() }
             </div>
         );
     }
@@ -47,4 +69,4 @@ export default graphql(getBooksQuery,{
         }
     }
   }
-})(BookList);
+})(withStyles(styles)(BookList));
