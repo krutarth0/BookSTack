@@ -31,10 +31,13 @@ class BookList extends Component {
             if(data.loading){return( <div>Loading books...</div> );}
               else {
 <<<<<<< HEAD
+<<<<<<< HEAD
                    return data.books.map(book => {
                         return(<li key={ book.id } onClick={ (e) => this.setState({ selected: book.id }) }>{ book.title }</li>);
                     })
 =======
+=======
+>>>>>>> pr/3
                    return (
                      <Grid container spacing={40}>
                      {data.book.map(book => {
@@ -51,7 +54,10 @@ class BookList extends Component {
                     })}
                     </Grid>
                   )
+<<<<<<< HEAD
 >>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
+=======
+>>>>>>> pr/3
                 }
             }
         catch(err){console.log(err);}

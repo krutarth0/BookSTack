@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+<<<<<<< HEAD
 import { BrowserRouter as Router  } from 'react-router-dom'
+=======
+import { BrowserRouter as Router } from 'react-router-dom'
+>>>>>>> pr/3
 
 //navbar + drawer
 import SideBar from './components/body/sidebar'
@@ -22,10 +26,13 @@ const client = new ApolloClient({
 
 class App extends Component {
 <<<<<<< HEAD
+<<<<<<< HEAD
 constructor(props) {
   super(props);
   this.state = {
 =======
+=======
+>>>>>>> pr/3
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +58,10 @@ constructor(props) {
    }
 
   logout =()=>this.setState({
+<<<<<<< HEAD
 >>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
+=======
+>>>>>>> pr/3
     isSignedIn: false,
     UserEmail:null,
     UserEmailvarified: false,
@@ -59,11 +69,15 @@ constructor(props) {
     UserPhoneNumber:null,
     UserPhotoUrl:null
 <<<<<<< HEAD
+<<<<<<< HEAD
   }
 }
 =======
   });
 >>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
+=======
+  });
+>>>>>>> pr/3
 
 setLoginStates =(data,login)=>{
     this.setState({
@@ -86,6 +100,7 @@ logout =()=>this.setState({
   UserPhotoUrl:null
 });
   render() {
+<<<<<<< HEAD
 
 
 
@@ -101,6 +116,13 @@ logout =()=>this.setState({
             <div><SideBar {...this.props}/>
             <BaseRouter {...this.state} setLoginStates={this.setLoginStates} logout={this.logout}/></div>
 >>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
+=======
+    return (
+        <ApolloProvider client={client}>
+          <Router>
+            <div><SideBar {...this.props}/>
+            <BaseRouter {...this.state} setLoginStates={this.setLoginStates} logout={this.logout}/></div>
+>>>>>>> pr/3
           </Router>
         </ApolloProvider>
     );

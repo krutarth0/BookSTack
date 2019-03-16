@@ -23,12 +23,15 @@ function Transition(props) {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
           try{
           if(this.props.bookId ){
             return(
                 <div className="site-font">
                     <h2>{ book.title }</h2>
 =======
+=======
+>>>>>>> pr/3
   const styles = {
     appBar: {
       position: 'relative',
@@ -41,7 +44,10 @@ function Transition(props) {
       marginLeft: "60%"
     }
   };
+<<<<<<< HEAD
 >>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
+=======
+>>>>>>> pr/3
 
 
 

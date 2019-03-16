@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AddPost from '../components/body/addPost'
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 import BookList from '../components/BookList';
@@ -28,11 +29,19 @@ class Home extends Component {
     })
 =======
 >>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
+=======
+
+
+class Home extends Component {
+  constructor(props){
+    super(props)
+>>>>>>> pr/3
   }
 
   render() {
 
     return (
+<<<<<<< HEAD
 <<<<<<< HEAD
             <div id="main">
                 <h1 className="logo-font">Book STack </h1>
@@ -45,6 +54,9 @@ class Home extends Component {
 =======
       <AddPost />
 >>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
+=======
+      <AddPost />
+>>>>>>> pr/3
     );
   }
 }
