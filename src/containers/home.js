@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components'
+import AddPost from '../components/body/addPost'
 
+<<<<<<< HEAD
 import BookList from '../components/BookList';
 
+=======
+>>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
 
 class Home extends Component {
   constructor(props){
     super(props)
+<<<<<<< HEAD
     this.state ={
       xsearch: "",
       search:"outer space",
@@ -22,21 +26,14 @@ class Home extends Component {
     this.setState({
       search: this.state.xsearch
     })
+=======
+>>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
   }
 
   render() {
-    const Button = styled.button `
-        display: inline-block;
-        border-radius: 3px;
-        width: 11rem;
-        background: transparent;
-        color: tomato;
-        border: 2px solid tomato;
-        ${props=>props.primary && css`
-              background:tomato;
-              color:white;`}
-    `;
+
     return (
+<<<<<<< HEAD
             <div id="main">
                 <h1 className="logo-font">Book STack </h1>
                 <div style={{textAlign:"center"}}>
@@ -45,7 +42,10 @@ class Home extends Component {
                 </div>
             <BookList search={this.state.search}/>
             </div>
+=======
+      <AddPost />
+>>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
     );
   }
 }
-export default Home;
+export default (Home);

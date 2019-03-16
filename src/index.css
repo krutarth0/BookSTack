@@ -10,6 +10,7 @@ body{
   font-family: 'Titillium Web', sans-serif;
   color:  #F8F8FF;
 }
+<<<<<<< HEAD
 #err h1{
   color: #F8F8FF;
 }
@@ -55,3 +56,5 @@ body{
     box-sizing: border-box;
     color: #fff;
 }
+=======
+>>>>>>> dbfbc34eb35afcc90e0a0eccf102fa9392f2cc06
