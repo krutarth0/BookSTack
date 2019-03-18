@@ -1,13 +1,9 @@
-import React, { Fragments } from 'react';
+import React from 'react';
 import { graphql } from 'react-apollo';
 import { getBookQuery } from '../queries/queries';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -47,7 +43,6 @@ class BookDetails extends React.Component {
 
   createModal(){
     var book = this.props.book
-    const { classes } = this.props;
     console.log(this.state.open)
     return(
       <div>

@@ -3,7 +3,6 @@ import { graphql } from 'react-apollo';
 import { getBooksQuery } from '../queries/queries';
 import Cards from "./body/card"
 import "./css/cardGrid.css"
-import BookDetails from './BookDetails';
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 const styles = theme => ({

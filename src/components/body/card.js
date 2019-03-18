@@ -1,4 +1,4 @@
-import React, {Fragments} from "react";
+import React from "react";
 // material-ui components
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
@@ -11,7 +11,6 @@ import imagesStyles from "../../assets/jss/material-kit-react/imagesStyles.jsx";
 import Divider from '@material-ui/core/Divider';
 import Grid from "@material-ui/core/Grid"
 import { cardTitle } from "../../assets/jss/material-kit-react.jsx";
-import { unstable_Box as Box } from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper'
 import W from "./W.jpeg"
 
@@ -82,7 +81,7 @@ class Cards extends React.Component {
           <Grid item>
           <Paper elevation={12} className={classes.profileImg}><img
           className={classes.profileImg}
-          src={W}/></Paper>
+          src={W} alt="altimg"/></Paper>
           </Grid>
           <Grid item>
           <h3 style={{marginTop:"35px", marginLeft:"15px"}}>UserName</h3>

@@ -1,6 +1,5 @@
 import React from "react"
 import firebase from "firebase"
-import { Link } from 'react-router-dom'
 
 //styles
 import 'antd/dist/antd.css';
@@ -150,13 +149,13 @@ displayLogin = ()=>{
         {
           this.state.modal==="login" ?
         <React.Fragment>
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle" style={{margin:"auto"}}>Login</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal-header">
+          <h5 className="modal-title" id="exampleModalCenterTitle" style={{margin:"auto"}}>Login</h5>
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div className="modal-body">
                             <Form onSubmit={this.handleSubmitLogin} style={{ maxWidth: "300px",margin:"auto"}}>
                                  <Form.Item>
                                    {getFieldDecorator('userName', {
@@ -195,13 +194,13 @@ displayLogin = ()=>{
         </React.Fragment>
         :
         <React.Fragment>
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle" style={{margin:"auto"}}>Signup</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal-header">
+          <h5 className="modal-title" id="exampleModalCenterTitle" style={{margin:"auto"}}>Signup</h5>
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div className="modal-body">
                              <Form {...formItemLayout} onSubmit={this.handleSubmitSignup}  style={{ maxWidth: "400px",margin:"auto"}}>
                                 <Form.Item
                                   label="E-mail"
@@ -277,11 +276,11 @@ displayLogin = ()=>{
         </div>
         </React.Fragment>
       }
-        <div class="modal-footer" style={{margin:"auto"}}>
-        <button type="button" class="btn btn-primary">Google</button>
-        <button type="button" class="btn btn-primary">Facebook</button>
-        <button type="button" class="btn btn-primary">Github</button>
-        <button type="button" class="btn btn-primary">LinkedIn</button>
+        <div className="modal-footer" style={{margin:"auto"}}>
+        <button type="button" className="btn btn-primary">Google</button>
+        <button type="button" className="btn btn-primary">Facebook</button>
+        <button type="button" className="btn btn-primary">Github</button>
+        <button type="button" className="btn btn-primary">LinkedIn</button>
         </div>
 
       </React.Fragment>

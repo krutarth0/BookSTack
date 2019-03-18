@@ -2,7 +2,6 @@ import React from 'react'
 import {Route} from 'react-router-dom'
 import Profile from './components/body/profile'
 import Home from "./containers/home";
-import Skeleton from './TEST/skeleton';
 
 const BaseRouter =(props)=>(
   <div>

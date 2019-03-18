@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
 
 //navbar + drawer
-import SideBar from './components/body/sidebar'
+import SideBar from './components/header/sidebar'
 
 // components
 import BaseRouter from './router.js'
 
+import MobileAppBar from './components/header/mobileAppBar'
 
 // apollo client setup
 const client = new ApolloClient({
@@ -24,7 +26,8 @@ class App extends Component {
       UserEmailvarified: false,
       UserDisplayName:null,
       UserPhoneNumber:null,
-      UserPhotoUrl:null
+      UserPhotoUrl:null,
+      isMobile : false,
     }
   }
 
@@ -49,12 +52,25 @@ class App extends Component {
     UserPhotoUrl:null
   });
 
+  componentDidMount(){
+    if(window.innerWidth<768){
+      this.setState({
+        variant:"temporary",
+        isMobile : true
+      })
+    }
+  }
+
   render() {
     return (
         <ApolloProvider client={client}>
           <Router>
-            <div><SideBar {...this.props}/>
-            <BaseRouter {...this.state} setLoginStates={this.setLoginStates} logout={this.logout}/></div>
+            <Grid container cols={2}>
+            {
+              this.state.isMobile ?
+              <MobileAppBar /> : 
+              <SideBar {...this.props}/>}
+            <BaseRouter {...this.state} setLoginStates={this.setLoginStates} logout={this.logout}/></Grid>
           </Router>
         </ApolloProvider>
     );

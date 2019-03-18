@@ -36,9 +36,12 @@ const styles = {
 
 function Profile(props) {
   const { classes } = props;
+  let pad
+  props.isMobile ?  pad = "0rem" : pad = "5rem"
+
   return (
     <div>
-      <GridContainer>
+      <GridContainer style={{marginLeft:pad}}>
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="primary">
@@ -55,7 +58,7 @@ function Profile(props) {
                       fullWidth: true
                     }}
                     inputProps={{
-                      disabled: true
+                      disabled: false
                     }}
                   />
                 </GridItem>
@@ -150,7 +153,7 @@ function Profile(props) {
           </Card>
         </GridItem>
         <GridItem xs={12} sm={12} md={4}>
-          <Card profile>
+          <Card profile  style={{marginBottom:"3rem"}}>
             <CardAvatar profile>
               <a href="#pablo" onClick={e => e.preventDefault()}>
                 <img src={avatar} alt="..." />
